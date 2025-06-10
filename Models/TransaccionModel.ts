@@ -29,4 +29,54 @@ export class Transaccion {
             return[];
         }
     }
+
+    public async InsertarTransaccion():Promise<{ success: boolean; message: string; transaccion?: Record<string, unknown>}>{
+        try {
+            if (!this._objTransaccion) {
+                throw new Error("No se ha proporcionado un objeto válido");
+            }
+
+            const { 
+                monto,
+                fecha,
+                descripcion,
+                idCategoria,
+                idUsuario,
+                idCuenta
+            } = this._objTransaccion;
+
+            await conexion.execute("START TRANSACTION");
+            const result = await conexion.execute("INSERT INTO transacciones (monto,fecha,descripcion,idCategoria,idUsuario,idCuenta) values (?,?,?,?,?,?)",
+                [
+                    monto,
+                    fecha,
+                    descripcion,
+                    idCategoria,
+                    idUsuario,
+                    idCuenta
+                ]
+            );
+
+            if (result && typeof result.affectedRows === "number" && result.affectedRows > 0) {
+                const [transaccion] = await conexion.query(
+                    "SELECT * FROM transacciones WHERE idTransaccion = LAST_INSERT_ID()",
+                );
+                await conexion.execute("COMMIT");
+                return {
+                    success: true,
+                    message: "Transaccion realizada correctamente.",
+                    transaccion: transaccion
+                };
+            } else {
+                throw new Error("No se pudo realizar la transaccion.");
+            }
+
+        } catch (error: any) {
+            console.error("Error al insertar la transaccion: ", error);
+            return{
+                success:false,
+                message: error.message || "Error interno del servidor"
+            };
+        }
+    }
 }
