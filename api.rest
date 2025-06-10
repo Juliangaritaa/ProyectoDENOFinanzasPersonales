@@ -1,3 +1,6 @@
+GET http://localhost:8000/users
+
+###
 POST http://localhost:8000/
 Content-Type:application/json
 
@@ -9,4 +12,4 @@ Content-Type:application/json
 ### localStorage.getItem('token')
 GET  http://localhost:8000/users
 Content-Type:application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImp0aSI6ImQ2N2Y3MWY0LWIxMjEtNGQ0Mi05OTQ4LTQ2NWZkYTU1NzhmYSIsImV4cCI6MTc0OTU1OTEzMn0.ldl3d8OWwqVHMEHsSk8k-xAW8iLV-EJz3e54V-U98Qg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOjgwMDAvUHJveWVjdG9ERU5PRmluYW56YXNQZXJzb25hbGVzIiwic3ViIjoxLCJqdGkiOiJhNDc1ZjE5NC0wOGFmLTQwNmYtYWU5ZS00NzE4NDJkOWQ1NTkiLCJleHAiOjE3NDk1NTk0MzR9.uhYjVGjUbrKG8i3Ok6LcZr_mFqhLOnqmnEwimvSB6hI
