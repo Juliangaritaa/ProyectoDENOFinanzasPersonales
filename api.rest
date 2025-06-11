@@ -13,3 +13,16 @@ Content-Type:application/json
 GET  http://localhost:8000/users
 Content-Type:application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOjgwMDAvUHJveWVjdG9ERU5PRmluYW56YXNQZXJzb25hbGVzIiwic3ViIjoxLCJqdGkiOiJhNDc1ZjE5NC0wOGFmLTQwNmYtYWU5ZS00NzE4NDJkOWQ1NTkiLCJleHAiOjE3NDk1NTk0MzR9.uhYjVGjUbrKG8i3Ok6LcZr_mFqhLOnqmnEwimvSB6hI
+
+### Obtener todas las categorías
+GET http://localhost:8000/categorias
+Content-Type: application/json
+
+### Crear nueva categoría 
+POST http://localhost:8000/categorias
+Content-Type: application/json
+
+{
+    "nombre": "Transporte",
+    "descripcion": "Gastos de movilidad: gasolina, taxi, Uber, transporte público, mantenimiento del vehículo"
+}

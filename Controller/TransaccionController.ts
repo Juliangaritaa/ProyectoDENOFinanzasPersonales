@@ -1,6 +1,6 @@
 // deno-lint-ignore-file
 
-import { Transaccion } from "../Models/TransaccionModel.ts";
+import { Transaccion } from "../Models/TransaccionModels.ts";
 
 export const getTransaccion = async(ctx: any) => {
     console.log("GET / Transaccion fue llamado");  
