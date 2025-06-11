@@ -27,25 +27,32 @@ export const posUserLogin = async(ctx:any) => {
         const result = await iniciarSesion(body.email,body.password);
 
         if(result.success){
-            const token = await CrearToken(result.data.idUsuario);
+            const token = await CrearToken(result.data.idUsuario.toString());
             response.status = 200;
             response.body = {
                 success:true,
                 accessToken:token,
                 data:`${result.data.nombre} ${result.data.apellido}`,
+                userId: result.data.idUsuario, // ✅ AGREGADO: ID del usuario
+                userInfo: {
+                    id: result.data.idUsuario,
+                    nombre: result.data.nombre,
+                    apellido: result.data.apellido,
+                    email: result.data.email
+                }
             };
         }else{
             response.status = 401;
             response.body = {
                 success:false,
-                msg:"Credenciales incorrectas                               "
+                msg:"Credenciales incorrectas"
             }
         }
 
     }catch(error){
 
         response.status = 500;
-        response.body={success:false,msg:"Error interno del servidor"+error};
+        response.body={success:false,msg:"Error interno del servidor: " + error};
 
     }
 }
