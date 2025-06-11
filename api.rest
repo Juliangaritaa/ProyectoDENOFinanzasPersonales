@@ -10,3 +10,29 @@ Content-Type:application/json
 GET  http://localhost:8000/users
 Content-Type:application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImp0aSI6ImQ2N2Y3MWY0LWIxMjEtNGQ0Mi05OTQ4LTQ2NWZkYTU1NzhmYSIsImV4cCI6MTc0OTU1OTEzMn0.ldl3d8OWwqVHMEHsSk8k-xAW8iLV-EJz3e54V-U98Qg
+
+###
+GET http://localhost:8000/cuenta
+###
+POST http://localhost:8000/cuenta
+Content-Type: application/json
+
+{
+    "nombre":"julian",
+    "tipoCuenta":"Debito",
+    "saldo":"500000",
+    "estado":"activo",
+    "idUsuario":"1"
+}
+###
+put http://localhost:8000/cuenta
+Content-Type: application/json
+
+{
+    "idCuenta":"2",
+    "nombre":"julian",
+    "tipoCuenta":"Debito",
+    "saldo":"50",
+    "estado":"activo",
+    "idUsuario":"1"
+}
