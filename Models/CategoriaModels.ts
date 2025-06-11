@@ -39,8 +39,8 @@ export class Categoria {
             }
 
             // Verificar si la categoría ya existe
-            const [categoriaExistente] = await conexion.query('SELECT idCategoria FROM categoria WHERE nombre = ?', [nombre]);
-            if (categoriaExistente) {
+            const result_check = await conexion.query('SELECT idCategoria FROM categoria WHERE nombre = ?', [nombre]);
+            if (result_check && result_check.length > 0) {
                 return { success: false, message: "Ya existe una categoría con ese nombre" };
             }
 
@@ -52,7 +52,8 @@ export class Categoria {
             );
 
             if (result && typeof result.affectedRows === "number" && result.affectedRows > 0) {
-                const [categoria] = await conexion.query('SELECT * FROM categoria WHERE idCategoria = LAST_INSERT_ID()');
+                const categoriaResult = await conexion.query('SELECT * FROM categoria WHERE idCategoria = LAST_INSERT_ID()');
+                const categoria = categoriaResult[0];
                 await conexion.execute("COMMIT");
                 return { 
                     success: true, 
@@ -89,8 +90,8 @@ export class Categoria {
             }
 
             // Verificar si otra categoría ya tiene ese nombre
-            const [categoriaExistente] = await conexion.query('SELECT idCategoria FROM categoria WHERE nombre = ? AND idCategoria != ?', [nombre, idCategoria]);
-            if (categoriaExistente) {
+            const result_check = await conexion.query('SELECT idCategoria FROM categoria WHERE nombre = ? AND idCategoria != ?', [nombre, idCategoria]);
+            if (result_check && result_check.length > 0) {
                 return { success: false, message: "Ya existe otra categoría con ese nombre" };
             }
 
@@ -102,7 +103,8 @@ export class Categoria {
             );
 
             if (result && typeof result.affectedRows === "number" && result.affectedRows > 0) {
-                const [categoria] = await conexion.query('SELECT * FROM categoria WHERE idCategoria = ?', [idCategoria]);
+                const categoriaResult = await conexion.query('SELECT * FROM categoria WHERE idCategoria = ?', [idCategoria]);
+                const categoria = categoriaResult[0];
                 await conexion.execute("COMMIT");
                 return { 
                     success: true, 
@@ -133,15 +135,16 @@ export class Categoria {
             await conexion.execute("START TRANSACTION");
 
             // Verificar si la categoría existe
-            const [categoriaExistente] = await conexion.query('SELECT * FROM categoria WHERE idCategoria = ?', [idCategoria]);
-            if (!categoriaExistente) {
+            const categoriaResult = await conexion.query('SELECT * FROM categoria WHERE idCategoria = ?', [idCategoria]);
+            if (!categoriaResult || categoriaResult.length === 0) {
                 await conexion.execute("ROLLBACK");
                 return { success: false, message: "La categoría no existe" };
             }
+            const categoriaExistente = categoriaResult[0];
 
             // Verificar si hay transacciones asociadas a esta categoría
-            const [transaccionesAsociadas] = await conexion.query('SELECT COUNT(*) as count FROM transacciones WHERE idCategoria = ?', [idCategoria]);
-            if (transaccionesAsociadas && transaccionesAsociadas.count > 0) {
+            const transaccionesResult = await conexion.query('SELECT COUNT(*) as count FROM transacciones WHERE idCategoria = ?', [idCategoria]);
+            if (transaccionesResult && transaccionesResult.length > 0 && transaccionesResult[0].count > 0) {
                 await conexion.execute("ROLLBACK");
                 return { success: false, message: "No se puede eliminar la categoría porque tiene transacciones asociadas" };
             }
