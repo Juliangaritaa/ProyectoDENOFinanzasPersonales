@@ -26,10 +26,17 @@ Content-Type: application/json
     "nombre": "Transporte",
     "descripcion": "Gastos de movilidad: gasolina, taxi, Uber, transporte público, mantenimiento del vehículo"
 }
+
 ### Actualizar categoría existente 
 PUT http://localhost:8000/categorias
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImp0aSI6ImQ2N2Y3MWY0LWIxMjEtNGQ0Mi05OTQ4LTQ2NWZkYTU1NzhmYSIsImV4cCI6MTc0OTU1OTEzMn0.ldl3d8OWwqVHMEHsSk8k-xAW8iLV-EJz3e54V-U98Qg
+
+{
+    "idCategoria":"4",
+    "nombre": "Gastos",
+    "descripcion":"Gastos de movilidad: gasolina, taxi, Uber, transporte público, mantenimiento del vehículo"
+}
+
 
 ###
 GET http://localhost:8000/cuenta

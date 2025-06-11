@@ -1,4 +1,4 @@
-import { z } from "../Dependencies/Dependencies.ts";
+
 import { conexion } from './Conexion.ts';
 
 interface TransaccionData {
