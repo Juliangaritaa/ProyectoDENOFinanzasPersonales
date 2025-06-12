@@ -174,4 +174,16 @@ export class Cuenta {
             }
         }
     }
+    public async SeleccionarCuentaPorUsuario(idUsuario: number): Promise<CuentaData[]> {
+    try {
+        const { rows: cuenta } = await conexion.execute(
+            'SELECT idCuenta, nombre, tipoCuenta, saldo, estado, idUsuario FROM cuenta WHERE idUsuario = ? ORDER BY nombre', 
+            [idUsuario]
+        );
+        return cuenta as CuentaData[];
+    } catch (error) {
+        console.error("Error al obtener cuentas por usuario:", error);
+        return [];
+    }
+}
 }

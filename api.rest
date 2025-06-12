@@ -45,10 +45,10 @@ POST http://localhost:8000/cuenta
 Content-Type: application/json
 
 {
-    "nombre":"julian",
-    "tipoCuenta":"Debito",
-    "saldo":"500000",
-    "estado":"activo",
+    "nombre":"Michel",
+    "tipoCuenta":"Tarjeta Credito",
+    "saldo":"600000",
+    "estado":"inactivo",
     "idUsuario":"1"
 }
 ###
@@ -56,10 +56,10 @@ put http://localhost:8000/cuenta
 Content-Type: application/json
 
 {
-    "idCuenta":"2",
-    "nombre":"julian",
+    "idCuenta":"3",
+    "nombre":"MichelG",
     "tipoCuenta":"Debito",
-    "saldo":"50",
-    "estado":"activo",
+    "saldo":"600000",
+    "estado":"inactivo",
     "idUsuario":"1"
 }
