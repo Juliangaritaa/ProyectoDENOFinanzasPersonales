@@ -9,6 +9,7 @@ interface TransaccionData {
     idCategoria: number;
     idUsuario: number;
     idCuenta: number;
+     idTipoTransaccion: number;
 }
 
 export class Transaccion {
@@ -42,20 +43,23 @@ export class Transaccion {
                 descripcion,
                 idCategoria,
                 idUsuario,
-                idCuenta
+                idCuenta,
+                idTipoTransaccion
             } = this._objTransaccion;
 
             await conexion.execute("START TRANSACTION");
-            const result = await conexion.execute("INSERT INTO transacciones (monto,fecha,descripcion,idCategoria,idUsuario,idCuenta) values (?,?,?,?,?,?)",
-                [
-                    monto,
-                    fecha,
-                    descripcion,
-                    idCategoria,
-                    idUsuario,
-                    idCuenta
-                ]
-            );
+            const result = await conexion.execute(
+    "INSERT INTO transacciones (monto, fecha, descripcion, idCategoria, idUsuario, idCuenta, idTipoTransaccion) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    [
+        monto,
+        fecha,
+        descripcion,
+        idCategoria,
+        idUsuario,
+        idCuenta,
+        idTipoTransaccion // ✅ AGREGAR ESTA LÍNEA
+    ]
+);
 
             if (result && typeof result.affectedRows === "number" && result.affectedRows > 0) {
                 const [transaccion] = await conexion.query(

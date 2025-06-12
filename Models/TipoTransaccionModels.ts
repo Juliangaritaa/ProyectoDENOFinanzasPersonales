@@ -18,7 +18,7 @@ export class TipoTransaccion {
     public async SeleccionarTipoTransaccion(): Promise<TipoTransaccionData[]> {
         try {
             const { rows: tipos } = await conexion.execute(
-                'SELECT idTipoTransaccion, descripcion FROM tipotransaccion ORDER BY descripcion'
+                'SELECT idTipoTransaccion, descripcion FROM tipotransacciones ORDER BY descripcion'
             );
             return tipos as TipoTransaccionData[];
         } catch (error) {
@@ -34,7 +34,7 @@ export class TipoTransaccion {
 
             // Verificar si ya existen los tipos base
             const tiposExistentes = await conexion.query(
-                'SELECT descripcion FROM tipotransaccion WHERE descripcion IN (?, ?)',
+                'SELECT descripcion FROM tipotransacciones WHERE descripcion IN (?, ?)',
                 ['Gasto', 'Ingreso']
             );
 
@@ -43,14 +43,14 @@ export class TipoTransaccion {
             // Insertar solo los que no existen
             if (!tiposQueExisten.includes('Gasto')) {
                 await conexion.execute(
-                    'INSERT INTO tipotransaccion (descripcion) VALUES (?)',
+                    'INSERT INTO tipotransacciones (descripcion) VALUES (?)',
                     ['Gasto']
                 );
             }
 
             if (!tiposQueExisten.includes('Ingreso')) {
                 await conexion.execute(
-                    'INSERT INTO tipotransaccion (descripcion) VALUES (?)',
+                    'INSERT INTO tipotransacciones (descripcion) VALUES (?)',
                     ['Ingreso']
                 );
             }

@@ -6,5 +6,6 @@ const routercuenta = new Router();
 routercuenta.get("/cuenta",getCuenta);
 routercuenta.post("/cuenta",postCuenta);
 routercuenta.put("/cuenta/:id",putCuenta);
-routercuenta.delete("/cuenta//cuenta/:id",deleteCuenta);
+routercuenta.delete("/cuenta/:id", deleteCuenta);
+
 export{routercuenta};

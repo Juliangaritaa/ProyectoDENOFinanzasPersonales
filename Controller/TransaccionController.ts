@@ -42,10 +42,11 @@ export const postTransaccion = async (ctx: any) => {
             idTransaccion:null,
             monto: body.monto,
             fecha: body.fecha,
-            descripcion: body.fecha,
+            descripcion: body.descripcion,
             idCategoria: body.idCategoria,
             idUsuario: body.idUsuario,
             idCuenta: body.idCuenta,
+               idTipoTransaccion: body.idTipoTransaccion
         };
 
         const objTransaccion = new Transaccion(transData);

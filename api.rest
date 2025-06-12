@@ -78,3 +78,6 @@ Content-Type: application/json
     "estado":"inactivo",
     "idUsuario":"1"
 }
+
+###
+GET http://localhost:8000/tipos-transaccion
