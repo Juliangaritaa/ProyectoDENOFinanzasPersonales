@@ -63,7 +63,7 @@ Content-Type: application/json
     "nombre":"Michel",
     "tipoCuenta":"Tarjeta Credito",
     "saldo":"600000",
-    "estado":"inactivo",
+    "estado":"activo",
     "idUsuario":"1"
 }
 ###
