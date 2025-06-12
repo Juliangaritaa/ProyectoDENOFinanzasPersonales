@@ -1,12 +1,27 @@
+
 GET http://localhost:8000/users
 
 ###
-POST http://localhost:8000/
+POST http://localhost:8000/users
 Content-Type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOjgwMDAvUHJveWVjdG9ERU5PRmluYW56YXNQZXJzb25hbGVzIiwic3ViIjoiMSIsImp0aSI6Ijc3OGI5YzQzLTM5YzktNDUxNy1iOGZlLTU1ZDY4Y2YyNDE3MCIsImV4cCI6MTc0OTY3NzU1M30.m_hDzVKU-Ehp262tjOcPu20MFZPkVRTOdiiHtuwH0uo
 
 {
-    "email":"juan.perez@email.com",
-    "password":"password123"
+    "nombre":"Luis",
+    "apellido":"Salamanca",
+    "telefono":"3209809449",
+    "direccion":"Calle45",
+    "email":"luis@gmail.com",
+    "password":"12345"
+}
+
+###
+POST http://localhost:8000/
+Content-Type: application/json
+
+{
+    "email": "juan.perez@email.com",
+    "password": "password123"
 }
 
 ### localStorage.getItem('token')

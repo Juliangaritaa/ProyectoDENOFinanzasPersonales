@@ -5,13 +5,14 @@ import { CategoriaRouter } from "./Routes/CategoriaRouter.ts"
 
 import { routercuenta } from "./Routes/CuentaRouters.ts";
 import { routerTransaccion } from "./Routes/TransaccionRouter.ts";
+import {TipoTransaccionRouter} from "./Routes/TipoTransaccionRouter.ts"
 
 
 const app = new Application();
 
 app.use(oakCors());
 
-const routers = [loginRouter,UserRouter,CategoriaRouter,routercuenta,routerTransaccion];
+const routers = [loginRouter,UserRouter,CategoriaRouter,routercuenta,routerTransaccion,TipoTransaccionRouter];
 
 
 routers.forEach((router) => {
