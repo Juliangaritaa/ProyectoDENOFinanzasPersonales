@@ -48,7 +48,7 @@ export class Transaccion {
             } = this._objTransaccion;
 
             await conexion.execute("START TRANSACTION");
-            const result = await conexion.execute(
+      const result = await conexion.execute(
     "INSERT INTO transacciones (monto, fecha, descripcion, idCategoria, idUsuario, idCuenta, idTipoTransaccion) VALUES (?, ?, ?, ?, ?, ?, ?)",
     [
         monto,
@@ -57,7 +57,7 @@ export class Transaccion {
         idCategoria,
         idUsuario,
         idCuenta,
-        idTipoTransaccion // ✅ AGREGAR ESTA LÍNEA
+        idTipoTransaccion
     ]
 );
 
